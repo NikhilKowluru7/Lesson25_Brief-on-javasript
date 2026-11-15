@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gamer profile</title>
+</head>
+<body>
+    <h1>Gamer Profile</h1>
+    <button onclick="showProfile()">View profile</button>
+    <div>Name: <span id="name"></span></div>
+    <div>Highscore: <span id="highscore"></span></div>
+    <div>Score: <span id="score"></span></div>
+    <div>Greeting: <span id="greeting"></span></div>
+    <div>Stars: <span id="stars"></span></div>
+    <div>Rank: <span id="rank"></span></div>
+    <div>Teamname: <span id="teamname"></span></div>
+    <div>Bonus: <span id="bonus"></span></div>
+    <script>
+        function showProfile(){
+        var name = "Nikhil";
+        var score = 7000;
+        var highscore = 10000;
+        var topscore = score==highscore;
+        var stars = "";
+        var teamname;
+        var greeting;
+        var bonus = null;
+        var hours = new Date().getHours()
+        if (hours<12){
+            greeting="Good Morning";
+        }
+        else if(hours<17){
+            greeting = "Good Afternoon";
+        }
+        else{
+            greeting="Good Evening";
+        }
+        var count=0;
+        while(count<5){
+            stars = stars+" * "
+            count=count+1;
+        }
+        var rank;
+        if (score>=8000){
+            rank="Gold";
+        }
+        else if(score>=5000){
+            rank="Silver"
+        }
+        else{
+            rank="Bronze"
+        }
+        document.getElementById("name").innerHTML=name;
+        document.getElementById("highscore").innerHTML=topscore;
+        document.getElementById("score").innerHTML=score +" out of " + highscore;
+        document.getElementById("greeting").innerHTML=greeting;
+        document.getElementById("stars").innerHTML=stars;
+        document.getElementById("rank").innerHTML = rank;
+        document.getElementById("teamname").innerHTML=teamname;
+        document.getElementById("bonus").innerHTML=bonus;
+    }
+    </script>
+</body>
+</html>
