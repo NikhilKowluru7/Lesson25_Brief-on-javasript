@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Birthday Countdown Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+        }
+        .card {
+            width: 90%;
+            max-width: 480px;
+            background: white;
+            border: 4px solid #ff6f91;
+            border-radius: 20px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff477e;
+        }
+        button {
+            background: #ff477e;
+            color: white;
+            border-radius: 25px;
+            padding: 12px 25px;
+        }
+        .box {
+            background: #fff0f5;
+            border: 2px dashed #ff6f91;
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 12px;
+            text-align: left;
+        }
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ff6f91;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Birthday Countdown Checker</h1>
+        <h3>When is your birthday?</h3>
+        <input type="date" id="birthday">
+        <br><br>
+        <button onclick="checkCountdown()">Check Countdown</button>
+        <div class="box">
+            <h3>Greeting</h3>
+            <p id="greeting">Enter your birthday above!</p>
+        </div>
+        <div class="box">
+            <h3>Days Left</h3>
+            <p id="message"></p>
+        </div>
+        <div class="box">
+            <h3>Countdown</h3>
+            <p id="countdown"></p>
+        </div>
+    </div>
+    <script>
+        function checkCountdown() {
+            let birthday = document.getElementById("birthday").value;
+            if (birthday == "") {
+                document.getElementById("message").innerHTML = "Please enter your birthday!";
+                return;
+            }
+            let today = new Date();
+            let birthDate = new Date(birthday);
+            let birthdayThisYear = new Date(
+                today.getFullYear(),
+                birthDate.getMonth(),
+                birthDate.getDate()
+            );
+            if (birthdayThisYear < today) {
+                birthdayThisYear.setFullYear(today.getFullYear() + 1);
+            }
+            let difference = birthdayThisYear - today;
+            let daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            let hour = new Date().getHours();
+            if (hour < 12) {
+                document.getElementById("greeting").innerHTML = "Good morning!";
+            } else if (hour < 17) {
+                document.getElementById("greeting").innerHTML = "Good afternoon!";
+            } else {
+                document.getElementById("greeting").innerHTML = "Good evening!";
+            }
+            let counter = daysLeft;
+            let countdown = "";
+
+            while (counter > 0) {
+                countdown = countdown + "Days left: " + counter + "<br>";
+                counter--;
+            }
+            countdown = countdown + "Birthday time!";
+            document.getElementById("countdown").innerHTML = countdown;
+        }
+    </script>
+</body>
+</html>
